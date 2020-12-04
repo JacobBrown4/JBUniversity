@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JBUniversity.Models.Student;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace JBUniversity.Models.Cohort
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<StudentListItem> Students { get; set; }
     }
 }

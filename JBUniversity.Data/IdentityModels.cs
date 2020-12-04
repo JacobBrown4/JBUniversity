@@ -34,6 +34,7 @@ namespace JBUniversity.Data
 
         public DbSet<Cohort> Cohorts { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {

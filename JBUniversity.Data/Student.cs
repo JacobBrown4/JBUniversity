@@ -16,5 +16,7 @@ namespace JBUniversity.Data
         [Required]
         public string LastName { get; set; }
 
+        public virtual List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+
     }
 }

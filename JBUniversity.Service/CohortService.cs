@@ -1,5 +1,6 @@
 ﻿using JBUniversity.Data;
 using JBUniversity.Models.Cohort;
+using JBUniversity.Models.Student;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,12 @@ namespace JBUniversity.Service
                     new CohortDetail
                     {
                         Id = entity.Id,
-                        Name = entity.Name
+                        Name = entity.Name,
+                        Students = entity.Enrollments.Select(x=> new StudentListItem
+                        {
+                            FirstName = x.Student.FirstName,
+                            LastName = x.Student.LastName
+                        }).ToList()
                     };
             }
         }
