@@ -30,16 +30,18 @@ namespace JBUniversity.Service
                 ctx.Students.Add(entity);
                 ctx.SaveChanges();
                 int iD = ctx.Students.AsEnumerable().Last().Id;
+                int savedObjects = 0;
                 foreach (int cohort in model.Cohorts)
                 {
                     Enrollment enroll = new Enrollment
                     {
                         CohortId = cohort,
-                        StudentId = iD
+                        StudentId = iD,
                     };
                     ctx.Enrollments.Add(enroll);
+                    ++savedObjects;
                 };
-                return ctx.SaveChanges() > -1;
+                return ctx.SaveChanges() == savedObjects;
             }
         }
     
