@@ -58,10 +58,9 @@ namespace JBUniversity.Service
                     {
                         Id = entity.Id,
                         Name = entity.Name,
-                        Students = entity.Enrollments.Select(x=> new StudentListItem
+                        Students = entity.Enrollments.Select(x=> new StudentBasicDetail
                         {
-                            FirstName = x.Student.FirstName,
-                            LastName = x.Student.LastName
+                            StudentName = x.Student.FirstName + " " + x.Student.LastName
                         }).ToList()
                     };
             }

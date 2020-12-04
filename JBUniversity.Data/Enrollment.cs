@@ -15,10 +15,10 @@ namespace JBUniversity.Data
 
         //[ForeignKey(nameof (Cohort))]
         public int CohortId { get; set; }
-        public Cohort Cohort { get; set; }
+        public virtual Cohort Cohort { get; set; }
 
         //[ForeignKey(nameof (Student))]
         public int StudentId { get; set; }
-        public Student Student { get; set;  }
+        public virtual Student Student { get; set;  }
     }
 }

@@ -76,6 +76,7 @@ namespace JBUniversity.Service
                     LastName = entity.LastName,
                     Cohorts = entity.Enrollments.Select(c => new CohortListItem
                     {
+                        Id = c.Id,
                         Name = c.Cohort.Name
                     }).ToList()
                 };
