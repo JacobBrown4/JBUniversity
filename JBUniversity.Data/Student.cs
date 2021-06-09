@@ -18,5 +18,6 @@ namespace JBUniversity.Data
 
         public virtual List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
+        public string FullName() => $"{FirstName} {LastName}";
     }
 }

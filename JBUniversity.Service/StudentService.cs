@@ -44,72 +44,71 @@ namespace JBUniversity.Service
                 return ctx.SaveChanges() == savedObjects;
             }
         }
-    
-    public IEnumerable<StudentListItem> GetStudents()
-    {
-        using (var ctx = new ApplicationDbContext())
+
+        public IEnumerable<StudentListItem> GetStudents()
         {
-            var query =
-                ctx
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Students
+                        .Select(
+                        e =>
+                            new StudentListItem
+                            {
+                                Id = e.Id,
+                                Name = e.FullName()
+                            });
+                return query.ToArray();
+            }
+        }
+        public StudentDetail GetStudentById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
                     .Students
-                    .Select(
-                    e =>
-                        new StudentListItem
-                        {
-                            Id = e.Id,
-                            FirstName = e.FirstName,
-                            LastName = e.LastName
-                        });
-            return query.ToArray();
-        }
-    }
-    public StudentDetail GetStudentById(int id)
-    {
-        using (var ctx = new ApplicationDbContext())
-        {
-            var entity = ctx
-                .Students
-                .Single(e => e.Id == id);
-            return
-                new StudentDetail
-                {
-                    Id = entity.Id,
-                    FirstName = entity.FirstName,
-                    LastName = entity.LastName,
-                    Cohorts = entity.Enrollments.Select(c => new CohortListItem
+                    .Single(e => e.Id == id);
+                return
+                    new StudentDetail
                     {
-                        Id = c.Id,
-                        Name = c.Cohort.Name
-                    }).ToList()
-                };
+                        Id = entity.Id,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Cohorts = entity.Enrollments.Select(c => new CohortListItem
+                        {
+                            Id = c.Id,
+                            Name = c.Cohort.Name
+                        }).ToList()
+                    };
+            }
         }
-    }
-    public bool UpdateStudent(StudentEdit model)
-    {
-        using (var ctx = new ApplicationDbContext())
+        public bool UpdateStudent(StudentEdit model)
         {
-            var entity = ctx
-                .Students
-                .Single(e => e.Id == model.Id);
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Students
+                    .Single(e => e.Id == model.Id);
 
-            entity.FirstName = model.FirstName;
-            entity.LastName = model.LastName;
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
 
-            return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() == 1;
+            }
         }
-    }
 
-    public bool DeleteStudent(int studentId)
-    {
-        using (var ctx = new ApplicationDbContext())
+        public bool DeleteStudent(int studentId)
         {
-            var entity =
-                ctx
-                .Students
-                .Single(e => e.Id == studentId);
-            ctx.Students.Remove(entity);
-            return ctx.SaveChanges() == 1;
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Students
+                    .Single(e => e.Id == studentId);
+                ctx.Students.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
         }
     }
-}
 }

@@ -12,6 +12,6 @@ namespace JBUniversity.Models.Cohort
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<StudentBasicDetail> Students { get; set; }
+        public List<StudentListItem> Students { get; set; }
     }
 }

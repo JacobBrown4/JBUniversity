@@ -46,8 +46,7 @@ namespace JBUniversity.Service
                                 StudentId = e.StudentId,
                                 Student = new StudentListItem
                                 {
-                                    FirstName = e.Student.FirstName,
-                                    LastName = e.Student.LastName,
+                                    Name = e.Student.FullName(),
                                     Id = e.Student.Id
                                 },
                                 CohortId = e.CohortId,
@@ -75,8 +74,7 @@ namespace JBUniversity.Service
                         StudentId = entity.StudentId,
                         Student = new StudentListItem
                         {
-                            FirstName = entity.Student.FirstName,
-                            LastName = entity.Student.LastName,
+                            Name = entity.Student.FullName(),
                             Id = entity.Student.Id
                         },
                         CohortId = entity.CohortId,
