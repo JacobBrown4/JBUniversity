@@ -31,16 +31,19 @@ namespace JBUniversity.Service
                 ctx.SaveChanges();
                 int iD = ctx.Students.AsEnumerable().Last().Id;
                 int savedObjects = 0;
-                foreach (int cohort in model.Cohorts)
+                if (model.Cohorts != null)
                 {
-                    Enrollment enroll = new Enrollment
+                    foreach (int cohort in model.Cohorts)
                     {
-                        CohortId = cohort,
-                        StudentId = iD,
+                        Enrollment enroll = new Enrollment
+                        {
+                            CohortId = cohort,
+                            StudentId = iD,
+                        };
+                        ctx.Enrollments.Add(enroll);
+                        ++savedObjects;
                     };
-                    ctx.Enrollments.Add(enroll);
-                    ++savedObjects;
-                };
+                }
                 return ctx.SaveChanges() == savedObjects;
             }
         }
@@ -51,15 +54,15 @@ namespace JBUniversity.Service
             {
                 var query =
                     ctx
-                        .Students
+                        .Students.AsEnumerable()
                         .Select(
                         e =>
                             new StudentListItem
                             {
                                 Id = e.Id,
                                 Name = e.FullName()
-                            });
-                return query.ToArray();
+                            }).ToArray();
+                return query;
             }
         }
         public StudentDetail GetStudentById(int id)

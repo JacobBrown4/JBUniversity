@@ -60,6 +60,7 @@ namespace JBUniversity.Service
                         Name = entity.Name,
                         Students = entity.Enrollments.Select(x => new StudentListItem
                         {
+                            Id = x.Student.Id,
                             Name = x.Student.FullName()
                         }).ToList()
                     };

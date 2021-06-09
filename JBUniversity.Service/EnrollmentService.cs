@@ -37,8 +37,9 @@ namespace JBUniversity.Service
             {
                 var query =
                     ctx
-                        .Enrollments
-                        .Select(
+                        .Enrollments.ToArray();
+                        
+                return query.Select(
                         e =>
                             new EnrollmentListItem
                             {
@@ -55,9 +56,8 @@ namespace JBUniversity.Service
                                     Name = e.Cohort.Name,
                                     Id = e.Cohort.Id
                                 }
-                                
-                            });
-                return query.ToArray();
+
+                            }).ToArray();
             }
         }
         public EnrollmentDetail GetEnrollmentById(int id)
