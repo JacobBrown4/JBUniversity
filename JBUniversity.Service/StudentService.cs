@@ -22,7 +22,8 @@ namespace JBUniversity.Service
                 new Student()
                 {
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    BadgesCompleted = model.BadgesCompelted
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -78,6 +79,7 @@ namespace JBUniversity.Service
                         Id = entity.Id,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
+                        BadgesCompelted = entity.BadgesCompleted,
                         Cohorts = entity.Enrollments.Select(c => new CohortListItem
                         {
                             Id = c.Id,
@@ -96,6 +98,7 @@ namespace JBUniversity.Service
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
+                entity.BadgesCompleted = model.BadgesCompleted;
 
                 return ctx.SaveChanges() == 1;
             }

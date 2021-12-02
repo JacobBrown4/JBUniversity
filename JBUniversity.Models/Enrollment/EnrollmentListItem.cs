@@ -11,9 +11,7 @@ namespace JBUniversity.Models.Enrollment
     public class EnrollmentListItem
     {
         public int Id { get; set; }
-        public int CohortId { get; set; }
-        public CohortListItem Cohort { get; set; }
-        public int StudentId { get; set; }
-        public StudentListItem Student { get; set; }
+        public string Class { get; set; }
+        public string  Student { get; set; }
     }
 }

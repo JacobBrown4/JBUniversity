@@ -16,6 +16,9 @@ namespace JBUniversity.Data
         [Required]
         public string LastName { get; set; }
 
+        [Required]
+        public int BadgesCompleted { get; set; }
+
         public virtual List<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
         public string FullName() => $"{FirstName} {LastName}";

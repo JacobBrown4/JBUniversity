@@ -10,15 +10,17 @@ namespace JBUniversity.Data
 {
     public class Enrollment
     {
+        //Joining/junction table
         [Key]
         public int Id { get; set; }
 
-        //[ForeignKey(nameof (Cohort))]
+        [ForeignKey(nameof (Cohort))]
         public int CohortId { get; set; }
         public virtual Cohort Cohort { get; set; }
 
         //[ForeignKey(nameof (Student))]
         public int StudentId { get; set; }
         public virtual Student Student { get; set;  }
+
     }
 }

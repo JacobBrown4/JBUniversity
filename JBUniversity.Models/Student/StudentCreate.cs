@@ -14,5 +14,7 @@ namespace JBUniversity.Data
         [Required]
         public string LastName { get; set; }
         public List<int> Cohorts { get; set; }
+        [Required]
+        public int BadgesCompelted { get; set; }
     }
 }

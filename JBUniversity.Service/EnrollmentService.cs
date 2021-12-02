@@ -44,18 +44,8 @@ namespace JBUniversity.Service
                             new EnrollmentListItem
                             {
                                 Id = e.Id,
-                                StudentId = e.StudentId,
-                                Student = new StudentListItem
-                                {
-                                    Name = e.Student.FullName(),
-                                    Id = e.Student.Id
-                                },
-                                CohortId = e.CohortId,
-                                Cohort = new Models.Cohort.CohortListItem
-                                {
-                                    Name = e.Cohort.Name,
-                                    Id = e.Cohort.Id
-                                }
+                                Student =e.Student.FullName(),
+                                Class = e.Cohort.Name
 
                             }).ToArray();
             }
