@@ -88,6 +88,28 @@ namespace JBUniversity.Service
                     };
             }
         }
+        public StudentDetail GetJacob(string whatever)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Students
+                    .Single(e => e.FirstName == "Jacob");
+                return
+                    new StudentDetail
+                    {
+                        Id = entity.Id,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        BadgesCompelted = entity.BadgesCompleted,
+                        Cohorts = entity.Enrollments.Select(c => new CohortListItem
+                        {
+                            Id = c.Id,
+                            Name = c.Cohort.Name
+                        }).ToList()
+                    };
+            }
+        }
         public bool UpdateStudent(StudentEdit model)
         {
             using (var ctx = new ApplicationDbContext())
