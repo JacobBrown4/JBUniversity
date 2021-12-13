@@ -30,7 +30,7 @@ namespace JBUniversity.Service
             {
                 ctx.Students.Add(entity);
                 ctx.SaveChanges();
-                int iD = ctx.Students.AsEnumerable().Last().Id;
+                int iD = ctx.Students.OrderByDescending(x => x.Id).FirstOrDefault().Id;
                 int savedObjects = 0;
                 if (model.Cohorts != null)
                 {
@@ -55,7 +55,7 @@ namespace JBUniversity.Service
             {
                 var query =
                     ctx
-                        .Students.AsEnumerable()
+                        .Students
                         .Select(
                         e =>
                             new StudentListItem

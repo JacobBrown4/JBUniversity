@@ -35,11 +35,7 @@ namespace JBUniversity.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Enrollments.ToArray();
-                        
-                return query.Select(
+                return ctx.Enrollments.Select(
                         e =>
                             new EnrollmentListItem
                             {
